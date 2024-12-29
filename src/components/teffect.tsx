@@ -6,7 +6,7 @@ const TypewriterEffect: React.FC = () => {
   const [text, setText] = useState('');
   const [wordIndex, setWordIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [speed, setSpeed] = useState(200);
+  const [speed, setSpeed] = useState(300);
 
   useEffect(() => {
     const handleTyping = () => {
@@ -27,7 +27,7 @@ const TypewriterEffect: React.FC = () => {
 
       if (isDeleting && text === '') {
         setIsDeleting(false);
-        setWordIndex((prev) => (prev + 1) % words.length);
+        setWordIndex((prev) => (prev + 1) % words?.length);
       }
     };
 

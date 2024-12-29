@@ -70,6 +70,7 @@ export default function JsonEditor() {
         errors.push("Screens must be an array.");
       } else {
         const screenIds = new Set();
+        // eslint-disable-next-line
         parsedJson.screens.forEach((screen: any, index: number) => {
           if (!screen.id) errors.push(`Screen ${index + 1} is missing an 'id'.`);
           if (!screen.title) errors.push(`Screen ${index + 1} is missing a 'title'.`);
@@ -79,9 +80,10 @@ export default function JsonEditor() {
             screenIds.add(screen.id);
           }
 
-      
+          // eslint-disable-next-line
           if (Array.isArray(screen.sections)) {
             const sectionIds = new Set();
+            // eslint-disable-next-line
             screen.sections.forEach((section: any, secIndex: number) => {
               if (!section.id) errors.push(`Section ${secIndex + 1} in screen ${screen.id} is missing an 'id'.`);
               if (!section.title) errors.push(`Section ${secIndex + 1} in screen ${screen.id} is missing a 'title'.`);
@@ -113,8 +115,9 @@ export default function JsonEditor() {
 
       setValidationErrors(errors);
       return errors.length === 0;
-    } catch (e) {
+    } catch (error) {
       setValidationErrors(["Invalid JSON format."]);
+      console.log(error)
       return false;
     }
   };
